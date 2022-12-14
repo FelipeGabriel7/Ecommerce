@@ -1,0 +1,76 @@
+.backPage{
+    margin: 4em auto;
+    padding: 0.5rem;
+    background: transparent;
+    color: #fff;
+    border: none;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.item{
+    margin: 2em auto;
+    width: 80%;
+    padding: 2rem;
+    background: rgb(252, 252, 252);
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.item img{
+    width: 20%;
+}
+
+
+.itemText{
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.category{
+    color: #7b7b7b;
+}
+
+
+.avaliate{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.description{
+    letter-spacing: 0.1rem;
+}
+
+.buttonProduct{
+    padding: 0.3rem 0.5rem;
+    border: 2px solid turquoise;
+    color: #000;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background: transparent;
+    transition: 0.3s all linear;
+}
+
+.buttonProduct:hover{
+    transition: 0.3s all linear;
+    background: #000;
+    color: #fff;
+}
+
+
+@media(max-width: 768px){
+    .item{
+        flex-wrap: wrap;
+    }
+}

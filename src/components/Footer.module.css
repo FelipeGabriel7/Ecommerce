@@ -1,0 +1,15 @@
+.end{
+    background: rgb(14 , 14 , 14);
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
+.icons{
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
