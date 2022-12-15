@@ -14,5 +14,11 @@ body {
 
 .container{
   width: 100%;
-  min-height: 100vh;
+  min-height: 75vh;
+}
+
+.categorySearch{
+  margin-top: 10em;
+  font-weight: bold;
+   text-align: center;
 }

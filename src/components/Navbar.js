@@ -28,7 +28,7 @@ export const Navbar = () => {
             <div>
               <form  className={styles.search} onSubmit={handleSubmit}>
               <button className={styles.icon}> <BsSearch  /> </button>
-                <input type="search" placeholder="busque por um produto" value={search} onChange={(e) =>  setSearch(e.target.value)}/> 
+                <input type="search" placeholder="busque por uma categoria" value={search} onChange={(e) =>  setSearch(e.target.value)}/> 
                
               </form>
             </div>

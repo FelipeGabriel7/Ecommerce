@@ -1,76 +1,39 @@
-.backPage{
-    margin: 4em auto;
-    padding: 0.5rem;
-    background: transparent;
-    color: #fff;
-    border: none;
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .item{
-    margin: 2em auto;
+    background: rgb(238, 238, 238);
+    border-radius: 0.5rem;
     width: 80%;
-    padding: 2rem;
-    background: rgb(252, 252, 252);
+    box-shadow: 0.2rem 0.2rem rgb(163, 163, 163);
     display: flex;
     gap: 2.5rem;
     justify-content: center;
     align-items: center;
+    margin: 8em auto;
+    padding: 0.8rem;
 }
-
-.item img{
-    width: 20%;
-}
-
 
 .itemText{
     display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
+    gap: 2rem;
     flex-direction: column;
 }
 
 
-.category{
-    color: #7b7b7b;
+.item img{
+    width: 30%;
 }
-
 
 .avaliate{
-    display: flex;
+    display:  flex;
+    gap: 2rem;
     align-items: center;
-    gap: 1rem;
-}
-
-.description{
-    letter-spacing: 0.1rem;
 }
 
 .buttonProduct{
-    padding: 0.3rem 0.5rem;
-    border: 2px solid turquoise;
-    color: #000;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    background: transparent;
-    transition: 0.3s all linear;
-}
-
-.buttonProduct:hover{
-    transition: 0.3s all linear;
-    background: #000;
+    padding: 0.4rem;
+    background: #0a91cf;
     color: #fff;
-}
-
-
-@media(max-width: 768px){
-    .item{
-        flex-wrap: wrap;
-    }
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
 }

@@ -7,7 +7,7 @@ import { BsStarFill } from 'react-icons/bs'
 export const CardProduct = ({ product }) => {
 
     const navigate = useNavigate()
-    const { dispatch } = useContext(CartContext);
+    const { dispatch , state } = useContext(CartContext);
 
     function handleDetails(id){
         navigate(`/product/${id}`)
@@ -15,9 +15,15 @@ export const CardProduct = ({ product }) => {
 
     function handleAddProduct(id){
 
+      
+
         const productSingle = {
             ...id,
             quantity: 1,
+        }
+
+        if(state.products.includes(productSingle)){
+            return alert(" Produto já foi adicionado ! ")
         }
 
         dispatch({type: 'ADD_PRODUCT', payload: productSingle});
@@ -33,6 +39,8 @@ export const CardProduct = ({ product }) => {
                         {prod.image && (
                             <img  className={styles.image} src={prod.image} alt={prod.title} />
                         )}
+
+                        <p className={styles.titleCard}> {prod.title} </p> 
                         <div className={styles.actions}>
                             <button onClick={() => handleDetails(prod.id)}> Details </button>
                             <button onClick={() => handleAddProduct(prod)}> ADD </button>

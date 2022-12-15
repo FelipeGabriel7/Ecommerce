@@ -21,6 +21,15 @@
     flex-direction: column;
 }
 
+.titleCard{
+    width: 200px;
+    word-wrap: break-word;
+    display: inline-block;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
 .card img{
     width: 150px;
     height: 150px;

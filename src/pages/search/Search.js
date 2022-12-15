@@ -1,36 +1,45 @@
 import React, { useEffect,  useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { CardProduct } from '../../components/CardProduct'
 
 export const Search = () => {
 
 
 const[response , setResponse] = useState([])
 const { search } = useLocation()
-const query = search.slice(3)
+const query = new URLSearchParams(search);
+const getQuery = query.get("q");
 
+console.log(getQuery)
 
 useEffect(() => {
-    async function fetchDataItem(){
-        const req = await fetch(`https://fakestoreapi.com/products`)
-        const res = await req.json();
 
-        setResponse(res);
-    }
+  async function fetchData(){
 
-    fetchDataItem();
-} , [query, search])
-
-
-const respVerify = response.find(resp => {
-  if(resp.title === query || resp.category === query){
-    return <p> {resp} </p>
+    fetch(`https://fakestoreapi.com/products/category/${getQuery}`)
+    .then(res => res.json())
+    .then(respo => setResponse(respo))
   }
-  return <p> Este item não existe </p>
-})
+
+  fetchData()
+
+}, [getQuery])
 
 
+console.log(response)
 
   return (
-    <div>{respVerify}</div>
+    <div>
+      {response.length === 0 && (
+        <>
+          <p className="categorySearch"> Não existe esta categoria de produtos , tente novamente. </p>
+        </>
+      )}
+        {response && (
+          <>
+            <CardProduct product={response} />
+          </>
+        )}
+    </div>
   )
 }

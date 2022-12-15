@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { AiFillDollarCircle, AiOutlinePlus, AiOutlineClose, AiOutlineMinus } from 'react-icons/ai';
 import { BsFillEyeFill, BsTrash } from 'react-icons/bs'
@@ -10,6 +10,7 @@ export const Cart = () => {
 
   const { state, dispatch } = useContext(CartContext)
   const { products } = state;
+  const [status, setStatus] = useState(false)
 
 
   const result = products.reduce((total, currentValue) => {
@@ -36,45 +37,58 @@ export const Cart = () => {
     dispatch({ type: "DECREMENT_PRODUCT", payload: product })
   }
 
+  function handleCheckout() {
+    setStatus(prevStatus => !prevStatus)
+  }
 
   return (
     <>
-      {products.length <= 0 && (
-        <h3 className={styles.cartItem} style={{textAlign: 'center'}}> Você ainda não adicionou nenhum produto </h3> 
-      )}
+      <div className={styles.component}>
+        {products.length <= 0 && (
+          <h3 className={styles.cartItem} style={{ textAlign: 'center' }}> Você ainda não adicionou nenhum produto </h3>
+        )}
 
-      {products.length > 0 && (
-        <div className={styles.cartItem}>
-          <h3 className={styles.title}> Confira os seus produtos Adicionados: </h3>
-          <h4 className={styles.title}> Seus produtos: {products.length} </h4>
+        {products.length > 0 && (
+          <div className={styles.cartItem}>
+            <h3 className={styles.title}> Confira os seus produtos Adicionados: </h3>
+            <h4 className={styles.title}> Seus produtos: {products.length} </h4>
 
 
-          {products && products.map(product => (
-            <div key={product.id} className={styles.itemCart}>
-              <p>{product.title} - <span styles={styles.itemQuantity}>({product.quantity})</span></p>
-              <div className={styles.price}>
-                <p>  {product.price} <AiFillDollarCircle /> </p>
-                <Link className={styles.productView} to={`/product/${product.id}`}> <BsFillEyeFill />  </Link>
-                <AiOutlinePlus onClick={() => handlePlusItem(product)} />
-                <AiOutlineMinus onClick={() => handleMinusItem(product)} />
-                <AiOutlineClose onClick={() => handleDeleteItem(product.id)} />
+            {products && products.map(product => (
+              <div key={product.id} className={styles.itemCart}>
+                <p>{product.title} - <span styles={styles.itemQuantity}>({product.quantity})</span></p>
+                <div className={styles.itemActions}>
+                  <p className={styles.itemPrice}>  {product.price} <AiFillDollarCircle /> </p>
+                  <Link className={styles.productView} to={`/product/${product.id}`}> <BsFillEyeFill />  </Link>
+                  <AiOutlinePlus onClick={() => handlePlusItem(product)} />
+                  <AiOutlineMinus onClick={() => handleMinusItem(product)} />
+                  <AiOutlineClose onClick={() => handleDeleteItem(product.id)} />
+                </div>
+              </div>
+            ))}
+
+
+            <p className={styles.remove} onClick={() => handleRemove()}> Remove all <BsTrash /> </p>
+
+            <button className={styles.checkout} onClick={handleCheckout}> Checkout </button>
+          </div>
+        )}
+      </div>
+      {status && (
+          <>
+            <div>
+              <div className={styles.componentModal}></div>
+              <div className={styles.modal}>
+                <AiOutlineClose className={styles.close} onClick={() => setStatus(prevStatus => !prevStatus)} />
+                <h3> Total a pagar: ${result.toFixed(2)}</h3>
+                <button > Realizar Pagamento  </button>
               </div>
             </div>
-          ))}
 
-
-          <p className={styles.remove} onClick={() => handleRemove()}> Remove all <BsTrash /> </p>
-
-          <button className={styles.checkout}> Checkout </button>
-
-
-          <h2 className={styles.total}> Total: {result.toFixed(2)} <AiFillDollarCircle /> </h2>
-
-
-        </div>
-
-      )}
-
+          </>
+        )}
     </>
+    
+
   )
 }

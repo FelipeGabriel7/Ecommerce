@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { BsFillStarFill , BsBoxArrowInLeft } from 'react-icons/bs'
+import { useParams } from 'react-router-dom'
+import { BsFillStarFill } from 'react-icons/bs'
 import { FiBox } from 'react-icons/fi'
 
 import styles from './Product.module.css';
@@ -11,7 +11,6 @@ const url = `https://fakestoreapi.com/products`;
 export const Product = () => {
 
     const { id } = useParams()
-    const navigate = useNavigate();
     const [productOne, setProductOne] = useState([]);
     const { dispatch } = useContext(CartContext)
 
@@ -27,20 +26,20 @@ export const Product = () => {
         fetchData();
     }, [id]);
 
-    function handleReturn(){
-        setTimeout(() => {
-            navigate("/")
-        }, 300);
-    }
-
-
+ 
     function handleAdd(id){
-        dispatch({type: 'ADD_PRODUCT', payload: id});
+
+        const productSingle = {
+            ...id,
+            quantity: 1,
+        }
+
+
+        dispatch({type: 'ADD_PRODUCT', payload: productSingle});
     }
 
     return (
         <>
-            <button className={styles.backPage} onClick={handleReturn}> <BsBoxArrowInLeft/> Retornar a página inicial </button>
             <div className={styles.item}>
 
 
