@@ -6,8 +6,9 @@
     background: rgb(14, 14, 14);
     color: #fff;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1.2rem;
     justify-content: space-between;
     box-shadow: 0.2rem 0.2rem 0.4rem #444;
 }
@@ -59,3 +60,12 @@
     font-weight: 800;
 }
 
+@media(max-width: 500px){
+    .navbar{
+        flex-direction: column;
+        text-align: center;
+        padding: 0.8rem;
+        gap: 0.5rem;
+        align-items: center;
+    }
+}

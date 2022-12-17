@@ -1,0 +1,16 @@
+.products{
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.productTitle{
+    margin: 1rem auto;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-bottom: 1px solid #7b7b7b;
+}

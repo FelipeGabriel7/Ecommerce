@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CardProduct } from '../../components/CardProduct';
 
-export const Home = () => {
+export const Items = () => {
   const[products , setProducts] = useState([])
 
   async function fetchData(){

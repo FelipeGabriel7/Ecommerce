@@ -67,16 +67,14 @@ export const Cart = () => {
               </div>
             ))}
 
-
             <p className={styles.remove} onClick={() => handleRemove()}> Remove all <BsTrash /> </p>
-
             <button className={styles.checkout} onClick={handleCheckout}> Checkout </button>
           </div>
         )}
       </div>
       {status && (
           <>
-            <div>
+            <div className={styles.newModal}>
               <div className={styles.componentModal}></div>
               <div className={styles.modal}>
                 <AiOutlineClose className={styles.close} onClick={() => setStatus(prevStatus => !prevStatus)} />

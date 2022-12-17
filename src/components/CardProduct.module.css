@@ -7,7 +7,6 @@
     flex-wrap: wrap;
 }
 
-
 .card{ 
     background: rgb(255, 255, 255);
     box-shadow: 0.2rem 0.2rem 0.4rem #444;
@@ -79,6 +78,12 @@
 
 
 @media(max-width: 500px){
+
+    .CardProduct{
+        margin-top: 12rem;
+        gap: 1rem;
+    }
+
     .card{
         width: 80%;
     }
