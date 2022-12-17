@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { AiFillDollarCircle, AiOutlinePlus, AiOutlineClose, AiOutlineMinus } from 'react-icons/ai';
+import { AiFillDollarCircle, AiOutlinePlus, AiOutlineClose, AiOutlineMinus, AiFillCheckCircle } from 'react-icons/ai';
 import { BsFillEyeFill, BsTrash } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
@@ -11,6 +11,7 @@ export const Cart = () => {
   const { state, dispatch } = useContext(CartContext)
   const { products } = state;
   const [status, setStatus] = useState(false)
+  const [checkout , setCheckout] = useState(false)
 
 
   const result = products.reduce((total, currentValue) => {
@@ -39,6 +40,19 @@ export const Cart = () => {
 
   function handleCheckout() {
     setStatus(prevStatus => !prevStatus)
+  }
+
+
+  function handleCheckoutValue(){
+
+
+    setCheckout(prevCheckout => !prevCheckout)
+    dispatch({type: 'REMOVE_ALL'})
+
+    setTimeout(() => {
+      setStatus(false)
+    }, 3500)
+
   }
 
   return (
@@ -78,8 +92,17 @@ export const Cart = () => {
               <div className={styles.componentModal}></div>
               <div className={styles.modal}>
                 <AiOutlineClose className={styles.close} onClick={() => setStatus(prevStatus => !prevStatus)} />
-                <h3> Total a pagar: ${result.toFixed(2)}</h3>
-                <button > Realizar Pagamento  </button>
+
+                {!checkout && (
+                   <h3> Total a pagar: ${result.toFixed(2)}</h3>
+                )}
+
+                {checkout && (
+                  <div>
+                    <p className={styles.checkoutProducts}> <AiFillCheckCircle /> Pagamento Realizado ! </p>
+                  </div>
+                )}
+                <button onClick={handleCheckoutValue}> Realizar Pagamento  </button>
               </div>
             </div>
 

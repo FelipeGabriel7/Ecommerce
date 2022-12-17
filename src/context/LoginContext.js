@@ -2,29 +2,18 @@ import React, { useReducer } from "react";
 
 
 const LoginState = {
-  user: null,
+  user: [],
   logged: false,
 }
 
 const reducerLogin = (state , action) => {
   switch(action.type){
       case 'NEW_USER':
-
-       async function fetchData(){
-        const req = await fetch(`https://fakestoreapi.com/users` , {
-          method: 'POST',
-          body: JSON.stringify(action.payload)
-        })
-
-        const res = await req.json();
-
-        console.log(res)
-
-        return {...state , user: res , logged: true}
-       }
-
-       fetchData()
-       return;
+       return {...state , user: [...state.user , action.payload]  , logged: !state.logged};
+      case 'LOGOUT':
+        return {user: [] , logged: false}
+      case 'LOGIN_USER':
+        return {...state , logged: !state.logged}
     default:
       return state
   }

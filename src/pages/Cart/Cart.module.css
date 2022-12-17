@@ -73,10 +73,10 @@
 }
 
 .componentModal{
+    position: absolute;
+    inset: 0 0 0 0;
     opacity: 40%;
     width: 100%;
-    position: absolute;
-    inset: 0;
     background: #000;
 }
 
@@ -111,6 +111,15 @@
     align-self: flex-end;
     font-size: 1.4em;
     font-weight: bold;
+}
+
+
+.checkoutProducts{
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.2em;
+    font-weight: bold;
+    align-items: center;
 }
 
 @media(max-width: 768px){

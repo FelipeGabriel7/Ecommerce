@@ -16,6 +16,17 @@ export const Register = () => {
 
   const { dispatchLogin } = useContext(LoginContext);
 
+
+  function setUser(date){
+    fetch(`https://fakestoreapi.com/users` , {
+      method: 'POST',
+      body: JSON.stringify(date)
+    })
+    .then(res => res.json())
+    .then(response => console.log(response))
+  }
+
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -23,11 +34,15 @@ export const Register = () => {
       return setError(' As senhas precisam ser iguais ')
     }
 
+    if(name.length < 6){
+      return setError(" Informe um nome com pelo menos 6 caracteres ")
+    }
+
     if (password.length < 6 || confirmPassword.length < 6) {
       return setError(" A senha deve possuir ao menos 6 caracteres ")
     }
 
-
+  
     const userInformation = {
       name,
       email,
@@ -35,20 +50,24 @@ export const Register = () => {
       id: generateRandomId(1000, 10)
     }
 
-    dispatchLogin({ type: 'NEW_USER', payload: userInformation })
+    setUser(userInformation)
 
-    setSucess(" Usuário cadastrado com sucesso ")
+
+    localStorage.setItem('user' , JSON.stringify(userInformation))
+    setSucess(" Usuário cadastrado com sucesso !")
+
     setName("")
+    setError("")
     setEmail("")
     setPassword("")
     setConfirmPassword("")
 
     setTimeout(() => {
+      dispatchLogin({ type: 'NEW_USER', payload: userInformation });
       navigate(`/items`)
-    }, 200)
+    }, 2500)
 
   }
-
 
   function generateRandomId(max, min) {
     const random = Math.floor(Math.random() * (max - min) + min)
@@ -57,8 +76,8 @@ export const Register = () => {
 
   return (
     <div className={styles.auth}>
-      {error && <p> {error} </p>}
-      {sucess && <p> {sucess} </p>}
+      {error && <p className='msg-error'> {error} </p>}
+      {sucess && <p className='msg-sucess'> {sucess}</p>}
       <h3 className={styles.title}> Venha se registrar utilize nosso comércio online </h3>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -78,7 +97,7 @@ export const Register = () => {
           Confirme sua senha
           <input type="password" placeholder="confirme sua senha" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         </label>
-        <button className={styles.btn} type="submit"> Cadastrar </button>
+        <button className={styles.btn}> Cadastrar </button>
         <Link className={styles.link} to="/login"> Já possui uma conta faça login !</Link>
       </form>
     </div>

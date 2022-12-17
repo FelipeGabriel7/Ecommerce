@@ -7,7 +7,6 @@ export const Items = () => {
   async function fetchData(){
     const request = await fetch(`https://fakestoreapi.com/products`);
     const response = await request.json();
-
     setProducts(response);
   }
 

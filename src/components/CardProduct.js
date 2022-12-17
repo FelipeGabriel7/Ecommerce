@@ -15,8 +15,6 @@ export const CardProduct = ({ product }) => {
 
     function handleAddProduct(id){
 
-      
-
         const productSingle = {
             ...id,
             quantity: 1,

@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { BsFillStarFill } from 'react-icons/bs'
 import { FiBox } from 'react-icons/fi'
 
 import styles from './Product.module.css';
-import { CartContext } from '../../context/CartContext';
 const url = `https://fakestoreapi.com/products`;
 
 
@@ -12,9 +11,7 @@ export const Product = () => {
 
     const { id } = useParams()
     const [productOne, setProductOne] = useState([]);
-    const { dispatch } = useContext(CartContext)
-
-
+   
     useEffect(() => {
         async function fetchData() {
             const request = await fetch(`${url}/${id}`);
@@ -27,17 +24,6 @@ export const Product = () => {
     }, [id]);
 
  
-    function handleAdd(id){
-
-        const productSingle = {
-            ...id,
-            quantity: 1,
-        }
-
-
-        dispatch({type: 'ADD_PRODUCT', payload: productSingle});
-    }
-
     return (
         <>
             <div className={styles.item}>
@@ -60,7 +46,7 @@ export const Product = () => {
                         </div>
                     )}
 
-                    <button className={styles.buttonProduct} onClick={() => handleAdd(productOne)}> ADD Product </button>
+                      <Link to="/items" className={styles.buttonProduct}> Voltar </Link> 
                 </div>
             </div>
         </>

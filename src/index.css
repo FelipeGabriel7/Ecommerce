@@ -16,3 +16,23 @@ body {
   width: 100%;
   min-height: 80vh;
 }
+
+.msg-sucess{
+  width: 50%;
+  margin: 0.8rem auto;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  color: #fff;
+  text-align: center;
+  background: rgba(7, 94, 255, 0.822);
+}
+
+.msg-error{
+  margin: 0.8rem auto;
+  width: 50%;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  color: #fff;
+  background: #f14;
+  text-align: center;
+}

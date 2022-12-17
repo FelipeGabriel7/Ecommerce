@@ -7,6 +7,7 @@ import { Login } from '../pages/Auth/Login'
 import { Register } from '../pages/Auth/Register'
 import { Cart } from '../pages/Cart/Cart'
 import { Items } from '../pages/Home/Items'
+import { Initial } from '../pages/Initial/Initial'
 import { Product } from '../pages/Product/Product'
 import { Search } from '../pages/search/Search'
 
@@ -21,6 +22,7 @@ export const PublicRoutes = () => {
         <Navbar />
         <div className='container'>
           <Routes>
+            <Route path="/" element={!stateLogin.logged ? <Initial/> : <Navigate to="/items" />} />
             <Route path="/product/:id" element={stateLogin.logged ? <Product /> : <Navigate to="/login" />} />
             <Route path="/login" element={!stateLogin.logged ? <Login /> : <Navigate to="/items" />} />
             <Route path="/register" element={!stateLogin.logged ? <Register /> : <Navigate to="/items" />} />

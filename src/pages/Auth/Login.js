@@ -1,19 +1,45 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginContext } from '../../context/LoginContext';
 import styles from './Auth.module.css'
 
 export const Login = () => {
 
   const[email , setEmail] = useState("")
   const[password , setPassword] = useState("");
+  const[error , setError] = useState("");
+  const[sucess , setSucess] = useState("")
+  const { dispatchLogin } = useContext(LoginContext)
+  const navigate = useNavigate()
 
-  function handleSubmitLogin(){
+  const user = JSON.parse(localStorage.getItem('user'))
+
+
+
+  function handleSubmitLogin(e){
+    e.preventDefault();
+
+    if(email === user.email && password === user.password){
+        setSucess(" Logando usuário ... ")
+
+        setTimeout(() => {
+          dispatchLogin({type: 'LOGIN_USER'})
+          navigate("/items")
+        }, 4000)
+    }else{
+       return setError(" Ess usuário não existe ");
+    }
+
+    setEmail("")
+    setPassword("")
 
   }
 
 
   return (
     <div className={styles.auth}>
+      {error && <p className='msg-error'> {error} </p>}
+      {sucess && <p className='msg-sucess'> {sucess} </p>}
       <h3 className={styles.title}> Realiza seu Login e venha adquirir seus produtos </h3>
       <form className={styles.form} onSubmit={handleSubmitLogin}>
         <label>

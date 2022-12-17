@@ -1,6 +1,7 @@
 .item{
     margin-top: 8rem;
     display: flex;
+    min-width: 80%;
     min-height: 500px;
     justify-content: center;
     align-items: center;
@@ -28,6 +29,8 @@
 }
 
 .buttonProduct{
+    text-align: center;
+    text-decoration: none;
     padding: 0.4rem;
     background: #0a91cf;
     color: #fff;
