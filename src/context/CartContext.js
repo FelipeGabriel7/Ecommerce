@@ -17,7 +17,7 @@ const reducer = (state, action) => {
         case 'DECREMENT_PRODUCT':
             return { ...state, products: state.products.map(product => product.id === action.payload.id ? { ...product, quantity: action.payload.quantity - 1 } : product) }
         default:
-            return state;
+            return {...state};
     }
 }
 

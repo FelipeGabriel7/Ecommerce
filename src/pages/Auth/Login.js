@@ -30,6 +30,7 @@ export const Login = () => {
        return setError(" Ess usuário não existe ");
     }
 
+    setError("")
     setEmail("")
     setPassword("")
 

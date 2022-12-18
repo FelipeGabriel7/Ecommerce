@@ -2,7 +2,9 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
 import styles from './CardProduct.module.css'
-import { BsStarFill } from 'react-icons/bs'
+import { BsStarFill , BsArrowUp} from 'react-icons/bs'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CardProduct = ({ product }) => {
 
@@ -13,6 +15,14 @@ export const CardProduct = ({ product }) => {
     navigate(`/product/${id}`)
   }
 
+  const showToastMessage = () => {
+    toast.success(' Produto Adicionado ao Carrinho! ', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 600,
+    });
+  };
+
+
 
   function handleAddProduct(id) {
 
@@ -21,14 +31,24 @@ export const CardProduct = ({ product }) => {
       quantity: 1,
     }
 
-  
+    showToastMessage()
     dispatch({ type: 'ADD_PRODUCT', payload: productSingle });
-    
+
+  }
+
+  function handleTopButton(){
+    setTimeout(() => {
+      window.scrollTo(0 , 0)
+    }, 200)
   }
 
 
   return (
     <>
+      <ToastContainer />
+      <div onClick={handleTopButton} className={styles.returnTop}>
+        <BsArrowUp className={styles.btnTop}/>
+      </div>
       <div className={styles.CardProduct}>
         {product && product.map((prod) => (
           <div className={styles.card} key={prod.id}>
@@ -45,6 +65,7 @@ export const CardProduct = ({ product }) => {
             </div>
             <p className={styles.price}> $ {prod.price} <span> <BsStarFill /> {prod.rating.rate} </span> </p>
           </div>
+          
         ))}
       </div>
     </>

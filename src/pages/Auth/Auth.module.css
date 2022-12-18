@@ -76,3 +76,10 @@
     transition: 0.5s all infinite;
     color: rgb(7, 134, 122);
 }
+
+@media(max-width: 500px){
+    .title{
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}
